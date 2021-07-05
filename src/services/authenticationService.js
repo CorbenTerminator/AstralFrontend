@@ -19,7 +19,7 @@ function logout() {
     currentTokenSubject.next(null);
 }
 
-function login(credentials) {
+async function login(credentials) {
     return fetch('/api/login', {
       method: 'POST',
       mode: 'cors',
@@ -31,13 +31,13 @@ function login(credentials) {
       .then(function(response){
        if(response.status === 401) {
          console.log("401 error")
-         return false
+         throw new Error("Неправильный логин или пароль");
        } else if (response.status === 200) {
          console.log("Success")
          return true
        } else {
            console.log(response.status)
-           return false
+           throw new Error(response.status);
        }
       })
       .then(token => {

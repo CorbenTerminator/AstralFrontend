@@ -40,15 +40,19 @@ class Login extends React.Component {
     this.setState({ [name]: value });
   }
 
-  handleSubmit(e) {
+  async handleSubmit(e) {
     e.preventDefault();
     const { username, password } = this.state;
-    authenticationService.login({
+    try {
+      await authenticationService.login({
       'login': username,
       'password': password
     });
     const { from } = this.props.location.state || { from: { pathname: "/" } };
     this.props.history.push(from);
+    } catch(error){
+      alert(error.message);
+    }
     // this.props.history.push('/orders')
     // setToken(token);
   }

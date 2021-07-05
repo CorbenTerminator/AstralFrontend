@@ -50,7 +50,7 @@ class ListOrders extends React.Component {
             status={order.status}
             createdAt={order.createdAt}
             order_id={order.order_id}
-            key={order.order_id}
+            key={i}
           />
 
         ))}

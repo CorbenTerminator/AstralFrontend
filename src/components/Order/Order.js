@@ -66,7 +66,7 @@ class Order extends React.Component {
                         product_name={product.product_name}
                         price={product.price}
                         category={product.category}
-                        key={product.product_id}
+                        key={i}
                         />
                     
                     ))}
